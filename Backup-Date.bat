@@ -1,9 +1,9 @@
 @echo off
 
-REM å¯ä»¥ä½¿ç”¨%date%é¡¯ç¤ºå…¨éƒ¨ç³»çµ±æ—¥æœŸï¼Œä¹ŸæœƒåŒ…å«é¡¯ç¤ºæ˜ŸæœŸ
-REM echo ä½ çš„æ—¥æœŸæ ¼å¼æ˜¯"%date%"(é€™æ®µè¨˜å¾—åŠ åœ¨åˆ¤æ–·å¼å‰é¢)
+REM ¥i¥H¨Ï¥Î%date%Åã¥Ü¥ş³¡¨t²Î¤é´Á¡A¤]·|¥]§tÅã¥Ü¬P´Á
+REM echo §Aªº¤é´Á®æ¦¡¬O"%date%"(³o¬q°O±o¥[¦b§PÂ_¦¡«e­±)
 
-REM åˆ¤æ–·æ—¥æœŸæ ¼å¼å’Œé¡¯ç¤º
+REM §PÂ_¤é´Á®æ¦¡©MÅã¥Ü
 if %date:~2,1% equ / goto mmddyyyy
 if %date:~2,1% equ - goto mmddyyyy
 goto yyyymmdd
@@ -13,8 +13,8 @@ set YYYY=%date:~6,4%
 set MM=%date:~0,2%
 set DD=%date:~3,2%
 
-if %date:~2,1% equ / ( echo ä½ çš„æ—¥æœŸæ ¼å¼æ˜¯"%YYYY%/%MM%/%DD%"
-) else ( echo ä½ çš„æ—¥æœŸæ ¼å¼æ˜¯"%YYYY%-%MM%-%DD%" )
+if %date:~2,1% equ / ( echo §Aªº¤é´Á®æ¦¡¬O"%YYYY%/%MM%/%DD%"
+) else ( echo §Aªº¤é´Á®æ¦¡¬O"%YYYY%-%MM%-%DD%" )
 goto checkmd
 
 :yyyymmdd
@@ -22,56 +22,56 @@ set YYYY=%date:~0,4%
 set MM=%date:~5,2%
 set DD=%date:~8,2%
 
-if %date:~4,1% equ / ( echo ä½ çš„æ—¥æœŸæ ¼å¼æ˜¯"%YYYY%/%MM%/%DD%"
-) else ( echo ä½ çš„æ—¥æœŸæ ¼å¼æ˜¯"%YYYY%-%MM%-%DD%" )
+if %date:~4,1% equ / ( echo §Aªº¤é´Á®æ¦¡¬O"%YYYY%/%MM%/%DD%"
+) else ( echo §Aªº¤é´Á®æ¦¡¬O"%YYYY%-%MM%-%DD%" )
 
 :checkmd
-set /p var=è¦å¹«ä½ å»ºç«‹è³‡æ–™å¤¾å—?(y/n):
+set /p var=­nÀ°§A«Ø¥ß¸ê®Æ§¨¶Ü?(y/n):
 
-IF %var% EQU y ( echo æ­£åœ¨å¹«ä½ å»ºç«‹ ^^_^^ 
-) else if %var% EQU Y ( echo æ­£åœ¨å¹«ä½ å»ºç«‹ ^^_^^ 
-) else if %var% EQU N ( echo ä¸‹æ¬¡è¦‹~Bye~  
+if %var% EQU y ( echo ¥¿¦bÀ°§A«Ø¥ß ^^_^^ 
+) else if %var% EQU Y ( echo ¥¿¦bÀ°§A«Ø¥ß ^^_^^ 
+) else if %var% EQU N ( echo ¤U¦¸¨£~Bye~  
 pause 
-goto :eof ) else if %var% EQU n ( echo ä¸‹æ¬¡è¦‹~Bye~ 
+goto :eof ) else if %var% EQU n ( echo ¤U¦¸¨£~Bye~ 
 pause 
-goto :eof ) else ( echo è¼¸å…¥y/nå¥½å—~æˆ‘æ£®æ°£æ°£äº†~æ°æ°
+goto :eof ) else ( echo ¿é¤Jy/n¦n¶Ü~§Ú´Ë®ğ®ğ¤F~ÙTÙT
 pause 
 goto :eof)
 
-REM å°‡æœˆã€æ—¥çš„åä½æ•¸ç‚º0æ™‚å»é™¤ç¬¬ä¸€ç¢¼çš„0
+REM ±N¤ë¡B¤éªº¢Ì¦ì¼Æ¬°0®É¥h°£²Ä¤@½Xªº0
 if %MM:~0,1% == 0 ( set /A MM=%MM:~1,1%+0 ) else ( set /A MM=%MM%+0 )
 if %DD:~0,1% == 0 ( set /A DD=%DD:~1,1%+0 ) else ( set /A DD=%DD%+0 )
 
-REM å–å¾—ç›®å‰è·¯å¾‘
-set TargetPath=%cd%
+REM ¨ú±o¥Ø«e¸ô®|
+set Target_Path=%cd%
 
-REM ä¾ä»Šæ—¥æ—¥æœŸå»ºç«‹å‚™ä»½ç›®éŒ„ï¼Œä¸¦å°‡source folderè¤‡è£½ä¸€ä»½åˆ°BackupFolder
-REM å°‡æ•¸å­—æœˆä»½è½‰æ›æˆè‹±æ–‡æœˆä»½
-IF %MM% EQU 1 (set Change_MM=Jan)
-IF %MM% EQU 2 (set Change_MM=Feb)
-IF %MM% EQU 3 (set Change_MM=Mar)
-IF %MM% EQU 4 (set Change_MM=Apr)
-IF %MM% EQU 5 (set Change_MM=May)
-IF %MM% EQU 6 (set Change_MM=Jun)
-IF %MM% EQU 7 (set Change_MM=Jul)
-IF %MM% EQU 8 (set Change_MM=Aug)
-IF %MM% EQU 9 (set Change_MM=Sep)
-IF %MM% EQU 10 (set Change_MM=Oct)
-IF %MM% EQU 11 (set Change_MM=Nov)
-IF %MM% EQU 12 (set Change_MM=Dec)
-REM ä¸Šæ–¹é€™æ®µçœ‹å€‹äººå–œå¥½ï¼Œå¦‚ä¸éœ€è¦å¯ä»¥æ‹¿ä¸‹ï¼Œä½†ä¸‹æ–¹%Change_MM%è¨˜å¾—æ”¹æˆ%MM%
+REM ¨Ì¤µ¤é¤é´Á«Ø¥ß³Æ¥÷¥Ø¿ı¡A¨Ã±Nsource folder½Æ»s¤@¥÷¨ìBackupFolder
+REM ±N¼Æ¦r¤ë¥÷Âà´«¦¨­^¤å¤ë¥÷
+if %MM% EQU 1 (set Change_MM=Jan)
+if %MM% EQU 2 (set Change_MM=Feb)
+if %MM% EQU 3 (set Change_MM=Mar)
+if %MM% EQU 4 (set Change_MM=Apr)
+if %MM% EQU 5 (set Change_MM=May)
+if %MM% EQU 6 (set Change_MM=Jun)
+if %MM% EQU 7 (set Change_MM=Jul)
+if %MM% EQU 8 (set Change_MM=Aug)
+if %MM% EQU 9 (set Change_MM=Sep)
+if %MM% EQU 10 (set Change_MM=Oct)
+if %MM% EQU 11 (set Change_MM=Nov)
+if %MM% EQU 12 (set Change_MM=Dec)
+REM ¤W¤è³o¬q¬İ­Ó¤H³ß¦n¡A¦p¤£»İ­n¥i¥H®³¤U¡A¦ı¤U¤è%Change_MM%°O±o§ï¦¨%MM%
 
 
-REM å°‡å‚™ä»½è³‡æ–™æŒ‡å‘æƒ³è¦çš„ä½ç½®
-set BackupFolder=C:\%YYYY%-%Change_MM%-%DD%
-echo md %BackupFolder%
-md %BackupFolder%
+REM ±N³Æ¥÷¸ê®Æ«ü¦V·Q­nªº¦ì¸m
+set Backup_Folder=C:\%YYYY%-%Change_MM%-%DD%
+echo md %Backup_Folder%
+md %Backup_Folder%
 
-REM æœ€å¾Œåšxcopyï¼Œå°‡è³‡æ–™å¤¾è£¡é¢æ±è¥¿å…¨éƒ¨è¤‡è£½
-echo xcopy %TargetPath%\. %BackupFolder%\ /D /E
-xcopy %TargetPath%\*.* %BackupFolder%\*.* /D /E
+REM ³Ì«á°µxcopy¡A±N¸ê®Æ§¨¸Ì­±ªF¦è¥ş³¡½Æ»s
+echo xcopy %Target_Path%\. %Backup_Folder%\ /D /E
+xcopy %Target_Path%\*.* %Backup_Folder%\*.* /D /E
 
-echo åšå®Œå›‰~~ä½ å¯ä»¥æª¢æŸ¥çœ‹çœ‹~~ä¸‹æ¬¡è¦‹~~~
+echo °µ§¹Åo~~§A¥i¥HÀË¬d¬İ¬İ~~¤U¦¸¨£~~~
 
 pause
 
